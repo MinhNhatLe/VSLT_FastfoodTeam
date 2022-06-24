@@ -1,0 +1,74 @@
+﻿@model VSLT_FastfoodTeam.Models.SanPham
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/admin/Views/Shared/adminlayout.cshtml";
+}
+
+<h2>Trang Chi Tiết Sản Phẩm</h2>
+
+<div>
+    <h4>Thông Tin Sản Phẩm Như Sau:</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tensp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tensp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dongia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dongia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Size)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Size)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hinhanh)
+        </dt>
+
+        <dd>
+            <img src="@Model.Hinhanh" style="width:300px;height:300px;" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Soluongton)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Soluongton)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaNCC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaNCC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaLoaiSP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaLoaiSP)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh Sửa Sản Phẩm", "Edit", new { id = Model.MaSP }) |
+    @Html.ActionLink("Trở Lại Trang", "Index")
+</p>

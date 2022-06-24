@@ -1,0 +1,293 @@
+﻿@using VSLT_FastfoodTeam.Models
+@model VSLT_FastfoodTeam.Models.SanPham
+@{
+    TaiKhoan kh = (TaiKhoan)Session["TaiKhoan"];
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Trang Chủ - Minh Nhật Fast Food</title>
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="~/Content/js/jquery.min.js"></script>
+    <!-- Custom Theme files -->
+    <!--theme-style-->
+    <link href="~/Content/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <!--//theme-style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="keywords" content="New Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" rel="stylesheet" type="text/css"><!--//fonts-->
+    <!-- start menu -->
+    <link href="~/Content/css/memenu.css" rel="stylesheet" type="text/css" media="all">
+    <script type="text/javascript" src="~/Content/js/memenu.js"></script>
+    <script>$(document).ready(function () { $(".memenu").memenu(); });</script>
+    <script src="~/Content/js/simpleCart.min.js"></script>
+</head>
+<body>
+    <!--header-->
+    <div class="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="search">
+                    <form>
+                        <input type="text" value="Tìm Kiếm Sản Phẩm " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                        <input type="submit" value="Tìm Kiếm">
+                    </form>
+                </div>
+                <div class="header-left">
+                    <ul>
+                        @if (Session["TaiKhoan"] != null)
+                        {
+
+                            <li>@Html.ActionLink("Đăng Xuất", "DangXuat", "User")</li>
+                            <li style="color:white;text-align:center;margin-top:2%;">Xin chào bạn: @kh.TenTK </li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("DangNhap", "User")">Đăng Nhập</a></li>
+                            <li><a href="@Url.Action("DangKy", "User")">Đăng Ký</a></li>
+                        }
+                        @*<li><a href="@Url.Action("DangNhap","Nguoidung")">Đăng Nhập</a></li>
+                            <li><a href="register.html">Đăng Kí</a></li>*@
+                        <li></li>
+                        <li>@Html.Partial("~/Views/GioHang/GioHangPartial.cshtml")</li>
+                    </ul>
+                    @*<div class="cart box_1">
+                            <a href="checkout.html">
+                                <h3>
+                                    <div class="total">
+                                        <span class="simpleCart_total">$0.00</span> (<span id="simpleCart_quantity" class="simpleCart_quantity">0</span> items)
+                                    </div>
+                                    <img src="images/cart.png" alt="">
+                                </h3>
+                            </a>
+                            <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+
+                        </div>*@
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="head-top" style="margin-bottom:5%">
+                <div class="logo">
+                    <a href="index.html"><img src="~/Content/pic/logo1.png" alt=""></a>
+                </div>
+                @Html.Action("MenuPartial", "LayoutMain")
+            </div>
+        </div>
+        <div>
+            <div class="col-md-3 product-price">
+                <div class=" rsidebar span_1_of_left">
+                    <div class="of-left">
+                        <p style="font-size:25px">DANH MỤC CÁC LOẠI SẢN PHẨM</p>
+                    </div>
+                    <ul class="menu">
+                        <li class="item1">
+                            <a href="#">Hamburger </a>
+                            <ul class="cute" style="display: none;">
+                                <li class="subitem1"><a href="single.html">Hamburger Mực</a></li>
+                                <li class="subitem2"><a href="single.html">Hamburger Tôm Cay </a></li>
+                                <li class="subitem3"><a href="single.html">Hamburger Phô Mai </a></li>
+                            </ul>
+                        </li>
+                        <li class="item2">
+                            <a href="#">Pizza </a>
+                            <ul class="cute" style="display: none;">
+                                <li class="subitem1"><a href="single.html">Pizza Bò </a></li>
+                                <li class="subitem2"><a href="single.html">Pizza Hải Sản </a></li>
+                                <li class="subitem3"><a href="single.html">Pizza Tôm Cua </a></li>
+                            </ul>
+                        </li>
+                        <li class="item3">
+                            <a href="#">Đồ Uống</a>
+                            <ul class="cute" style="display: none;">
+                                <li class="subitem1"><a href="single.html">Coca Cola </a></li>
+                                <li class="subitem2"><a href="single.html">Pepsi </a></li>
+                                <li class="subitem3"><a href="single.html">Mirinda Đá Xoay</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!--initiate accordion-->
+                <script type="text/javascript">
+                    $(function () {
+                        var menu_ul = $('.menu > li > ul'),
+                            menu_a = $('.menu > li > a');
+                        menu_ul.hide();
+                        menu_a.click(function (e) {
+                            e.preventDefault();
+                            if (!$(this).hasClass('active')) {
+                                menu_a.removeClass('active');
+                                menu_ul.filter(':visible').slideUp('normal');
+                                $(this).addClass('active').next().stop(true, true).slideDown('normal');
+                            } else {
+                                $(this).removeClass('active');
+                                $(this).next().stop(true, true).slideUp('normal');
+                            }
+                        });
+
+                    });
+                </script>
+                <!---->
+                <!---->
+                <div class="product-bottom">
+                    <div class="of-left-in">
+                        <h3 class="best">Ưu Đãi Cực Sốc Cuối Tuần</h3>
+                    </div>
+                    <div class="product-go">
+                        <div class=" fashion-grid">
+                            <a href="#"><img class="img-responsive " src="~/Content/images/pizza1.jpg" alt=""></a>
+
+                        </div>
+                        <div class=" fashion-grid1">
+                            <h6 class="best2">
+                                <a href="#">
+                                    Mua 1 tặng 2
+                                </a>
+                            </h6>
+
+                            <span class=" price-in1"> 80.000 VNĐ</span>
+                        </div>
+
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="product-go">
+                        <div class=" fashion-grid">
+                            <a href="#"><img class="img-responsive " src="~/Content/images/hamburger1.jpg" alt=""></a>
+
+                        </div>
+                        <div class="fashion-grid1">
+                            <h6 class="best2">
+                                <a href="#">
+                                    Giảm 5% khi mua 5 món ăn
+                                    bất kì trở lên
+                                </a>
+                            </h6>
+
+                            <span class=" price-in1"> 50.000 VNĐ</span>
+                        </div>
+
+                        <div class="clearfix"> </div>
+                    </div>
+
+                </div>
+                <div class=" per1">
+                    <a href="single.html">
+                        <img class="img-responsive" src="~/Content/pic/logo.png" alt="" style="float:none">
+
+                        <!--
+
+                            <div class="six1">
+                                <h4 style="color:darkred">GIẢM</h4>
+                                <p style="color:darkred">LÊN ĐẾN</p>
+                                <span style="color:darkred">40%</span>
+                            </div>
+    -->
+
+                    </a>
+                </div>               
+            </div>
+            <div class="col-md-9 product1">
+                <div class="col-md-9 product-price1">
+                    <!--<div class="col-md-5 single-top">
+                        <div class="flexslider">
+
+                            <div class="flex-viewport" style="overflow: hidden; position: relative;">
+                                <ul class="slides" style="width: 1200%; transition-duration: 0.6s; transform: translate3d(-568px, 0px, 0px);">
+                                    <li data-thumb="images/si.jpg" class="clone" aria-hidden="true" style="width: 284px; float: left; display: block;">
+                                        <img src="images/si.jpg" draggable="false">
+                                    </li>
+                                    <li data-thumb="images/si.jpg" style="width: 284px; float: left; display: block;" class="">
+                                        <img src="images/si.jpg" draggable="false">
+                                    </li>
+                                    <li data-thumb="images/si1.jpg" style="width: 284px; float: left; display: block;" class="flex-active-slide">
+                                        <img src="images/si1.jpg" draggable="false">
+                                    </li>
+                                    <li data-thumb="images/si2.jpg" style="width: 284px; float: left; display: block;" class="">
+                                        <img src="images/si2.jpg" draggable="false">
+                                    </li>
+                                    <li data-thumb="images/si.jpg" style="width: 284px; float: left; display: block;" class="">
+                                        <img src="images/si.jpg" draggable="false">
+                                    </li>
+                                    <li data-thumb="images/si.jpg" style="width: 284px; float: left; display: block;" class="clone" aria-hidden="true">
+                                        <img src="images/si.jpg" draggable="false">
+                                    </li>
+                                </ul>
+                            </div><ol class="flex-control-nav flex-control-thumbs"><li><img src="images/si.jpg" class="" draggable="false"></li><li><img src="images/si1.jpg" draggable="false" class="flex-active"></li><li><img src="images/si2.jpg" draggable="false" class=""></li><li><img src="images/si.jpg" draggable="false" class=""></li></ol><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev" href="#">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="#">Next</a></li></ul>
+                        </div>-->
+                    <!-- FlexSlider -->
+                    <!--<script defer="" src="js/jquery.flexslider.js"></script>
+                        <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen">
+
+                        <script>
+                            // Can also be used with $(document).ready()
+                            $(window).load(function () {
+                                $('.flexslider').flexslider({
+                                    animation: "slide",
+                                    controlNav: "thumbnails"
+                                });
+                            });
+                        </script>
+                    </div>-->
+                    <div class="col-md-7 single-top-in simpleCart_shelfItem">
+                        <div class="single-para ">
+                            <h4>@Html.DisplayFor(model => model.Tensp)</h4>
+                            <div class="star-on">
+                                <ul class="star-footer">
+                                    <li><a href="#"><i> </i></a></li>
+                                    <li><a href="#"><i> </i></a></li>
+                                    <li><a href="#"><i> </i></a></li>
+                                    <li><a href="#"><i> </i></a></li>
+                                    <li><a href="#"><i> </i></a></li>
+                                </ul>
+                                <div class="review">
+                                    <a href="#">(5)</a>
+
+                                </div>
+                                <div class="clearfix"> </div>
+                            </div>
+
+                            <h5 class="item_price">@Html.DisplayFor(model => model.Dongia) VNĐ</h5>
+                            <p>
+                                Hãy tận hưỡng bữa ăn cùng gia đình, chúc bạn may mắn
+                                và luôn tận hưởng món ăn cùng bạn bè thân yêu.
+                            </p>
+                            <div>
+                                <ul class="tag-men">
+                                    <li>
+                                        <span>Số Lượng Tồn: </span>
+                                        <span>@Html.DisplayFor(model => model.Soluongton)</span>
+                                    </li>
+                                    <li>
+                                        <span>Size: </span>
+                                        <span>@Html.DisplayFor(model => model.Size)</span>
+                                    </li>
+                                    <li>
+                                        <span>Tên Loại Sản Phẩm: </span>
+                                        <span>@Html.DisplayFor(model => model.LoaiSP.TenLoai)</span>
+                                    </li>
+                                    <li>
+                                        <span>Nhà Cung Cấp: </span>
+                                        <span>@Html.DisplayFor(model => model.NCC.TenNCC)</span>
+                                    </li>
+                                </ul>
+                            </div>
+                                <span><img src="@Html.DisplayFor(model => model.Hinhanh)" alt="Alternate Text" style="width:500px;height:400px"/></span>
+                                <a href="@Url.Action("ThemGioHang", "GioHang",new { @id = Model.MaSP, @strURL = Request.Url.ToString() })" class="add-cart item_add">THÊM VÀO GIỎ</a>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                    <!---->
+                </div>
+            </div>
+</body>
+</html>

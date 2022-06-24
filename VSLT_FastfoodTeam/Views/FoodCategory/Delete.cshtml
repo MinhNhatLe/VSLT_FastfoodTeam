@@ -1,0 +1,41 @@
+﻿@model VSLT_FastfoodTeam.Models.LoaiSP
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/admin/Views/Shared/adminlayout.cshtml";
+}
+
+<h2>TRANG XÓA LOẠI SẢN PHẨM</h2>
+
+<h3>Bạn Có Chắc Chắn Muốn Xóa Loại Sản Phẩm Này?</h3>
+<div>
+    <h4>Thông Tin Loại Sản Phẩm Như Sau:</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenLoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenLoai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Icon)
+        </dt>
+
+        <dd>
+            <img src="@Model.Icon" style="width:200px;height:200px;" />
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-warning" /> |
+            @Html.ActionLink("Trở Lại Trang", "Index")
+        </div>
+    }
+</div>

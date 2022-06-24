@@ -1,0 +1,26 @@
+﻿@using VSLT_FastfoodTeam.Models
+@model IEnumerable<SanPham>
+<div class="content-top">
+    <h1>CÁC MÓN ĂN PHỔ BIẾN</h1>
+    <div class="grid-in">
+        @foreach (var item in Model.Take(9))
+        {
+            <div class="col-md-4 grid-top">
+                <a href="/LayoutMain/Detail/@item.MaSP" class="b-link-stripe b-animate-go  thickbox">
+                    <img class="img-responsive" src="@item.Hinhanh" alt="food" style="border-radius:initial; height:250px" >
+                    <div class="b-wrapper">
+                        <h3 class="b-animate b-from-left    b-delay03 ">
+                            <span>
+                               Đơn Giá: @item.Dongia VNĐ
+                                    <br />
+                                   Size: @item.Size
+                            </span>
+                        </h3>
+                    </div>
+                </a>
+                <p><a href="/LayoutMain/Detail/@item.MaSP">@item.Tensp</a></p>
+            </div>
+        }
+        <div class="clearfix"> </div>
+    </div>
+</div>

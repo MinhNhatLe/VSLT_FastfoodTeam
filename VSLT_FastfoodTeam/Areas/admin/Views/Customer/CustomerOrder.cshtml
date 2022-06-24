@@ -1,0 +1,91 @@
+﻿@model PagedList.IPagedList<VSLT_FastfoodTeam.Models.cusorder>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "CustomerOrder";
+    Layout = "~/Areas/admin/Views/Shared/adminlayout.cshtml";
+}
+@using (Html.BeginForm("Customer", "Customer", FormMethod.Get, new { @class = "form-inline" }))
+{
+    <div class="form-group">
+        <label>Tìm Kiếm Khách Hàng  </label>
+        <input type="Text" class="form-control mx-sm-4" name="searching" placeholder="Nhập tên cần tìm">
+        <input type="submit" class="btn btn-danger" value="Tìm kiếm">
+    </div>
+    <hr />
+}
+<table class="table">
+    <tr>
+        <th>
+            Tên Khách Hàng
+        </th>
+        <th>
+            Số Đơn Đã Đặt
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenKH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.số_đơn_đã_đặt)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.)*@
+            </td>
+        </tr>
+    }
+</table>
+<div>
+    <div>
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) /  @Model.PageCount
+    </div>
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("CustomerOrder", "Customer", new { page = page }))
+    </div>
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>
+<style type="text/css">
+    #mau-nut a {
+        clear: both;
+        background-color: orange;
+        color: snow;
+    }
+
+        #mau-nut a:hover {
+            background-color: darkcyan;
+            color: snow;
+        }
+</style>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        var maxLength = 100;
+        $(".show-read-more").each(function () {
+            var myStr = $(this).text();
+            if ($.trim(myStr).length > maxLength) {
+                var newStr = myStr.substring(0, maxLength);
+                var removedStr = myStr.substring(maxLength, $.trim(myStr).length); $(this).empty().html(newStr);
+                $(this).append(' <a href="javascript:void(0);" class="read more">đọc tiếp...</a>');
+                $(this).append('<span class="more-text">' + removedStr + '</span>');
+            }
+        });
+        $(".read-more").click(function () {
+            $(this).siblings(".more-text").contents().unwrap();
+            $(this).remove();
+        });
+    });
+</script>
+<style>
+    .show-read-more .more-text {
+        display: none;
+    }
+</style>

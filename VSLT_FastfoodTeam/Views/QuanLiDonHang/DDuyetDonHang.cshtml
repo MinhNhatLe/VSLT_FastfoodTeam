@@ -1,0 +1,78 @@
+﻿@using VSLT_FastfoodTeam.Models;
+@model DonDatHang
+@{
+    ViewBag.Title = "DDuyetDonHang";
+    Layout = "~/Areas/admin/Views/Shared/adminlayout.cshtml";
+}
+<h2>Thông tin đơn hàng của: <font color="#f65e84">@Model.KhachHang.TenKH</font></h2>
+<br />
+<br />
+
+@using (Html.BeginForm())
+{
+<div class="ChiTietDonHang table">
+    @{IEnumerable<CTDDH> lstChiTietDH = (IEnumerable<CTDDH>)ViewBag.ListChiTietDH;}
+    <table class="table" id="table">
+        <tr>
+            <td colspan="4">
+                <table style="width:100%;">
+                    <tr>
+                        <td>Mã Đơn Hàng: <b style="color:red;"> @Model.MaDDH @Html.Hidden("MaDDH", @Model.MaDDH)</b></td>
+                        <td>Mã Khách Hàng: <b style="color:red;"> @Model.KhachHang.MaKH</b></td>
+                        <td>Tên Khách Hàng: <b style="color:red;"> @Model.KhachHang.TenKH</b></td>
+                        <td>Ngày Đặt: @Model.Ngaydat.Value.ToString("MM/dd/yyyy")</td>
+
+
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+
+        <tr>
+            <td><b>Sản Phẩm</b></td>
+            <td><b>Hình Ảnh</b></td>
+            <td><b>Số Lượng Đặt</b></td>
+            <td><b>Đơn Giá Đặt</b></td>
+        </tr>
+
+        @foreach (var item in lstChiTietDH)
+        {
+            <tr>
+                <td>@item.SanPham.Tensp</td>
+                <td><img width="300" height="250" src="@item.SanPham.Hinhanh" /></td>
+                <td>@item.soluong</td>
+                <td>@item.Dongia VNĐ</td>
+            </tr>
+        }
+        <tr>
+            <td align="right" colspan="4">Địa Chỉ: @Model.KhachHang.DiaChi</td>
+        </tr>
+
+    </table>
+    <br /><br />
+    <p style="margin-left:80%;">  @Html.ActionLink("Duyệt Đơn Hàng", "Duyet", "QuanLiDonHang", new { id = @ViewBag.getid }, new { @class = "btn btn-success" })</p>
+    <br /><br />
+    @Html.ActionLink("Danh sách đơn hàng", "DaGiaoHang", "QuanLiDonHang");
+</div>
+}
+
+<script>
+
+    $("#btnInDonHang").click(function () {
+        var content = "<table>" + $("#table").html() + "</table>";
+        InDonHang(content);
+    });
+
+    //Phương thức in
+    function InDonHang(content) {
+        var printWindow = window.open('', '', 'height=400,width=800');
+        printWindow.document.write('<html><head><title>HÓA ĐƠN MUA HÀNG</title>');
+        printWindow.document.write('</head><body >');
+        printWindow.document.write(content);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print();
+    }
+
+</script>

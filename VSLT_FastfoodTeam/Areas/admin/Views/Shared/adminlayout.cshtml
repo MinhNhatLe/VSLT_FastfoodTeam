@@ -1,0 +1,80 @@
+﻿
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Trang Chủ", "Index", "admin", new { area = "admin" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse" style="display:block;">
+                <div class="dropdown">
+                    <button class="dropbtn">Quản Lý Sản Phẩm</button>
+                    <div class="dropdown-content">
+                        <a href="/Food/Index">Sản Phẩm</a>
+                        <a href="/FoodCategory/Index">Loại Sản Phẩm</a>
+                        @*<a href="#">Nhà cung cấp</a>*@
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Chi Tiết Sản Phẩm</button>
+                    <div class="dropdown-content">
+                        <a href="/CTPN/Index">Phiếu Nhập</a>
+                        <a href="/CTDDH/Index">Đơn Đặt Hàng</a>
+                        @*<a href="#">Link 3</a>*@
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Quản Lý Khách Hàng</button>
+                    <div class="dropdown-content">
+                        <a href="/admin/Customer/Customer">Khách Hàng</a>
+                        <a href="/admin/Customer/CustomerOrder">Số Đơn Đã Đặt</a>
+                        @*<a href="#">Link 3</a>*@
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Nhà Cung Cấp</button>
+                    <div class="dropdown-content">
+                        <a href="/NCC/Index">Danh Sách NCC</a>
+                        <a href="/NCC/Create">Thêm NCC</a>
+                        @*<a href="#">Link 3</a>*@
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Đơn hàng</button>
+                    <div class="dropdown-content">
+                        <a href="/QuanLiDonHang/ChuaGiaoHang">Đã Duyệt</a>
+                        <a href="/QuanLiDonHang/DaGiaoHang">Chưa Duyệt</a>
+                        @*<a href="#">Link 3</a>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; Minh Nhật Fast Food @DateTime.Now</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("upload", required: false)
+</body>
+</html>

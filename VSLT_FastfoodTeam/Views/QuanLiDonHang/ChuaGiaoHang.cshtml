@@ -1,0 +1,79 @@
+﻿@model PagedList.IPagedList<VSLT_FastfoodTeam.Models.DonDatHang>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "ChuaGiaoHang";
+    Layout = "~/Areas/admin/Views/Shared/adminlayout.cshtml";
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 20);
+}
+<h2>Đơn Đã Duyệt</h2>
+<br />
+
+@using (Html.BeginForm("ChuaGiaoHang", "QuanLiDonHang", FormMethod.Get, new { @class = "form-inline" }))
+{
+    <div class="form-group">
+        <label>Tìm Kiếm Khách Hàng  </label>
+        <input type="Text" class="form-control mx-sm-4" name="searching" placeholder="Nhập tên khách hàng cần tìm ... ">
+        <input type="submit" class="btn btn-danger" value="Tìm kiếm">
+    </div>
+    <hr />
+}
+
+@grid.GetHtml(
+
+tableStyle: "divTable",
+    headerStyle: "gridHead",
+    footerStyle: "gridFooter",
+    rowStyle: "gridRow",
+    alternatingRowStyle: "gridAltRow",
+    columns: grid.Columns(
+    grid.Column("MaDDH", header: "Mã Đơn Hàng"),
+            grid.Column("MaKH", header: "Họ Tên Khách Hàng", format: p => p.MaKH != null ? p.KhachHang.TenKH : ""),  //Dùng toán tử 3 ngôi thay cho điều kiện if
+        grid.Column("NgayDat", header: "Ngày Đặt"),
+
+        grid.Column("NgayGiao", header: "Ngày Giao"),
+
+
+    grid.Column(format: p => @Html.ActionLink("Xem", "Xem", new { id = p.MaDDH }, new { @target = "_blank" }))
+
+        ))
+
+<div>
+    <div>
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) /  @Model.PageCount
+    </div>
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("ChuaGiaoHang", "QuanLiDonHang", new { page = page }))
+    </div>
+</div>
+<style>
+    .nav > li {
+        background: rgba(0,0,0,.5);
+    }
+
+    .divTable {
+        width: 100%;
+        border: 1px solid #999999;
+    }
+
+        .divTable td {
+            border: 1px solid #999999;
+        }
+
+    .gridHead {
+        background-color: Green;
+    }
+
+        .gridHead > th > a {
+            color: #fff;
+        }
+
+    .gridFooter {
+        font-weight: bold;
+    }
+
+    .divTable a {
+        color: blue;
+    }
+</style>
+
+

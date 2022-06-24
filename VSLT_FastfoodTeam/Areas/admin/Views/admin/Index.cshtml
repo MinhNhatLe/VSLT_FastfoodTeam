@@ -1,0 +1,81 @@
+﻿@using VSLT_FastfoodTeam.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/adminlayout.cshtml";
+    var hethang = Session["HetHang"];
+    var saphethang = Session["SapHetHang"];
+    var Tongsl = Session["Tongsl"];
+
+}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div class="row">
+    <div class="flip-card myleft">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <h2>Sản Phẩm Sắp Hết Hàng</h2>
+            </div>
+            <div class="flip-card-back">
+                <h1 style="padding-top:50px">@saphethang</h1>
+            </div>
+        </div>
+    </div>
+    <div class="flip-card myleft">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <h2>Sản Phẩm Hết Hàng</h2>
+            </div>
+            <div class="flip-card-back">
+                <h1 style="padding-top:50px">@hethang</h1>
+            </div>
+        </div>
+    </div>
+    <div class="flip-card myleft">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <h2>Số Lượng Sản Phẩm</h2>
+            </div>
+            <div class="flip-card-back">
+                <h1 style="padding-top:50px">@Tongsl</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<canvas id="myChart" width="400" height="400"></canvas>
+<script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7', 'Chủ Nhật'],
+            datasets: [{
+                label: 'Các Đơn Đặt Hàng',
+                data: [@ViewBag.thu2, @ViewBag.thu3, @ViewBag.thu4, @ViewBag.thu5, @ViewBag.thu6, @ViewBag.thu7,@ViewBag.cn],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+

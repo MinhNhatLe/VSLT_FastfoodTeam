@@ -1,0 +1,144 @@
+﻿@using PagedList.Mvc;
+@using VSLT_FastfoodTeam.Models
+@{
+    TaiKhoan kh = (TaiKhoan)Session["TaiKhoan"];
+
+}
+@model PagedList.IPagedList<VSLT_FastfoodTeam.Models.SanPham>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="//fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet">
+    <title>Liên Hệ - Minh Nhật  Fast Food</title>
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="~/Content/js/jquery.min.js"></script>
+    <!-- Custom Theme files -->
+    <!--theme-style-->
+    <link href="~/Content/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <!--//theme-style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="keywords" content="New Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" rel="stylesheet" type="text/css"><!--//fonts-->
+    <!-- start menu -->
+    <link href="~/Content/css/memenu.css" rel="stylesheet" type="text/css" media="all">
+    <script type="text/javascript" src="~/Content/js/memenu.js"></script>
+    <script>$(document).ready(function () { $(".memenu").memenu(); });</script>
+    <script src="~/Content/js/simpleCart.min.js"></script>
+</head>
+<body>
+    <!--header-->
+    <div class="header">
+        <div class="header-top">
+            <div class="container">             
+                <div class="header-left">
+                    <ul>
+                        @if (Session["TaiKhoan"] != null)
+                        {
+
+                            <li>@Html.ActionLink("Đăng Xuất", "DangXuat", "User")</li>
+                            <li style="color:white;text-align:center;margin-top:2%;">Xin chào bạn: @kh.TenTK </li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("DangNhap", "User")">Đăng Nhập</a></li>
+                            <li><a href="@Url.Action("DangKy", "User")">Đăng Ký</a></li>
+                        }
+                        @*<li><a href="@Url.Action("DangNhap","Nguoidung")">Đăng Nhập</a></li>
+                            <li><a href="register.html">Đăng Kí</a></li>*@
+                        <li></li>
+                        <li>@Html.Partial("~/Views/GioHang/GioHangPartial.cshtml")</li>
+                    </ul>
+                    @*<div class="cart box_1">
+                            <a href="checkout.html">
+                                <h3>
+                                    <div class="total">
+                                        <span class="simpleCart_total">$0.00</span> (<span id="simpleCart_quantity" class="simpleCart_quantity">0</span> items)
+                                    </div>
+                                    <img src="images/cart.png" alt="">
+                                </h3>
+                            </a>
+                            <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+
+                        </div>*@
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="head-top" style="margin-bottom:5%">
+                <div class="logo">
+                    <a href="index.html"><img src="images/logo.png" alt=""></a>
+                </div>
+                @Html.Action("MenuPartial", "LayoutMain")
+            </div>
+        </div>       
+            <div class="col-md-9 product1">
+                <div class="col-md-9 product-price1">
+                    <div class="contact">
+                        <div class="container">
+                            <h1>CHÚNG TÔI SẼ LIÊN HỆ ĐẾN BẠN SỚM NHẤT</h1>
+                            <div class="contact-form">
+                                @if (ViewBag.Error != null)
+                                {
+                                    <h2>@ViewBag.Error</h2>
+                                }
+                                else
+                                {
+                                    <div class="col-md-8 contact-grid">
+                                        <form method="post" action="LienHe">
+                                            <input placeholder="Tên Khách Hàng" type="text" value="" name="nameKhachHang" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='Tên Khách Hàng';}">
+
+                                            <input placeholder="Gmail Liên Hệ" type="text" value="" name="receiverEmail" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='Gmail Liên Hệ';}"> 
+                                            <input placeholder="Tiêu Đề" type="text" value="" name="subject" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='Tiêu Đề';}">
+
+                                            <textarea placeholder="Nội Dung Thư" cols="77" rows="6" value=" " name="message" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'Nội Dung Thư';}"></textarea>
+                                            <div class="send">
+                                                <input type="submit" value="Gửi Thông Tin" style="padding-right:15%">
+                                                <br />
+                                                <h2>@ViewBag.Error</h2>
+                                            </div>
+                                        </form>
+                                    </div>
+                                }
+                                <div class="col-md-4 contact-in">
+
+                                    <div class="address-more">
+                                        <h4>ĐỊA CHỈ 1</h4>
+                                        <p>PHÂN HIỆU TRƯỜNG ĐH GTVT TẠI TP. HỒ CHÍ MINH </p>
+                                        <p>450-451 Lê Văn Việt, Phường Tăng Nhơn Phú A, Tp. Thủ Đức (Quận 9 Cũ)</p>
+                                        <p>Thành Phố Hồ Chí Minh</p>
+                                    </div>
+                                    <div class="address-more">
+                                        <h4>ĐỊA CHỈ 2</h4>
+                                        <p>CÔNG TY CỔ PHẦN MINH NHẬT FAST FOOD</p>
+                                        <p>Điện Thoại Liên Hệ: 0355138988</p>
+                                        <p>Email: <a href="mailto:contact@example.com">6051071084@st.utc2.edu.vn</a></p>
+                                    </div>
+
+                                </div>
+                                <div class="clearfix"> </div>
+                            </div>
+                            <div class="map">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.550089231674!2d106.79198281532108!3d10.845701660875623!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317527158a0a5b81%3A0xf45c5d34ac580517!2zUGjDom4gaGnhu4d1IFRyxrDhu51uZyDEkOG6oWkgaOG7jWMgR1RWVCB04bqhaSBUcC4gSOG7kyBDaMOtIE1pbmg!5e0!3m2!1svi!2sus!4v1654106302624!5m2!1svi!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>  
+</body>
+</html>

@@ -1,0 +1,59 @@
+﻿@model PagedList.IPagedList<VSLT_FastfoodTeam.Models.SanPham>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/adminlayout.cshtml";
+}
+@using (Html.BeginForm("Index", "Food", FormMethod.Get, new { @class = "form-inline" }))
+{
+    <div class="form-group">
+        <label>Tìm Kiếm Sản Phẩm  </label>
+        <input type="Text" class="form-control mx-sm-4" name="searching" placeholder="Nhập tên sản phẩm cần tìm ... ">
+        <input type="submit" class="btn btn-danger" value="Tìm Kiếm">
+    </div>
+    <hr />
+}
+
+<p>
+    @Html.ActionLink("Thêm Sản Phẩm Mới", "Create", "Food", new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>Mã Sản Phẩm </th>
+        <th>Tên Sản Phẩm </th>
+        <th>Đơn Giá</th>
+        <th>Size </th>
+        <th>Hình Ảnh </th>
+        <th>Số Lượng Tồn </th>
+        <th>Mã Nhà Cung Cấp</th>
+        <th>Loại Sản Phẩm </th>
+        <th>Các Chức Năng</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.MaSP</td>
+            <td>@item.Tensp</td>
+            <td>@item.Dongia VNĐ</td>
+            <td>@item.Size</td>
+            <td><img src="@item.Hinhanh" style="width:100px;height:150px;" /></td>
+            <td>@item.Soluongton</td>
+            <td>@item.MaNCC</td>
+            <td>@item.LoaiSP.TenLoai</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MaSP }, new { @class = "btn btn-success" }) 
+                @Html.ActionLink("Detail", "Detail", new { id = item.MaSP }, new { @class = "btn btn-danger" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.MaSP }, new { @class = "btn btn-warning" })
+            </td>
+        </tr>
+    }
+</table>
+<div>
+    <div>
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) /  @Model.PageCount
+    </div>
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("Index", "Food", new { page = page }))
+    </div>
+</div>
+

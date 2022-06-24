@@ -1,0 +1,14 @@
+﻿@using VSLT_FastfoodTeam.Models;
+@model IEnumerable<SanPham>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+@{
+    IEnumerable<SanPham> lstSP = (IEnumerable<SanPham>)ViewBag.ListSP;
+    IEnumerable<SanPham> lstNGK = (IEnumerable<SanPham>)ViewBag.ListNGK;
+}
+<div class="container">
+    @Html.Partial("~/Views/LayoutMain/SanPhamPartial_content_1.cshtml", lstSP)
+    @Html.Partial("~/Views/LayoutMain/SanPhamPartial_content_2.cshtml", lstNGK)
+</div>

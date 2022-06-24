@@ -1,0 +1,90 @@
+﻿@model VSLT_FastfoodTeam.Models.TaiKhoan
+@{
+    Layout = null;
+}
+<h2 style="text-align:center">TRANG ĐĂNG NHẬP TÀI KHOẢN</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="~/Content/Site.css" />
+    <div class="container">
+        <div class="row">
+
+            <div class="main">
+
+                <h3 style="text-align:center">Đăng Nhập Thông Qua Hình Thức</h3>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <a href="#" class="btn btn-lg btn-primary btn-block">Facebook</a>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <a href="#" class="btn btn-lg btn-info btn-block">Google</a>
+                    </div>
+                </div>
+
+                <!--
+
+                    <div class="login-or">
+                        <hr class="hr-or">
+                        <span class="span-or">or</span>
+                    </div>
+    -->
+
+
+
+                <form role="form">
+                    <div class="form-group">
+                        <label for="inputUsernameEmail">Tài Khoản</label>
+                        @Html.EditorFor(model => model.TenTK, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TenTK, " ", new { @class = "text-danger" })
+                        @ViewBag.Thongbao
+                    </div>
+                    <div class="form-group">
+
+                        <label for="inputPassword">Mật Khẩu</label>
+                        @Html.PasswordFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                        @ViewBag.Thongbao
+                    </div>
+
+                    <style>
+                        input[type=password] {
+                            display: block;
+                            width: 100%;
+                        }
+
+                        .aaa {
+                            display: flex;
+                            justify-content: flex-end;
+                            flex-direction: row;
+                            align-items: center;
+                        }
+
+                            .aaa a {
+                                margin-left: 20px;
+                            }
+                    </style>
+                    <div class="checkbox aaa">
+                        <label>
+                            <input type="checkbox">
+                            Ghi Nhớ Mật Khẩu
+                        </label>
+                        <a class="pull-right" href="#">Quên Mật Khẩu?</a>
+                        <a href="/User/DangKy">Đăng Ký Tài Khoản</a>
+                    </div>
+                    <button type="submit" class="btn btn btn-danger">
+                        Đăng Nhập
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+}
+<div>
+    @Html.ActionLink("Trở Lại Trang Chính", "Index", "LayoutMain")
+</div>

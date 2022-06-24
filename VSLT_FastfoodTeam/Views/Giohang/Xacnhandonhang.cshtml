@@ -1,0 +1,83 @@
+﻿
+@{
+    Layout = null;
+
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="//fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet">
+    <title>Xác Nhận Đơn Hàng - Minh Nhật Fast Food</title>
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="~/Content/js/jquery.min.js"></script>
+    <!-- Custom Theme files -->
+    <!--theme-style-->
+    <link href="~/Content/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <!--//theme-style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="keywords" content="New Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" rel="stylesheet" type="text/css"><!--//fonts-->
+    <!-- start menu -->
+    <link href="~/Content/css/memenu.css" rel="stylesheet" type="text/css" media="all">
+    <script type="text/javascript" src="~/Content/js/memenu.js"></script>
+    <script>$(document).ready(function () { $(".memenu").memenu(); });</script>
+    <script src="~/Content/js/simpleCart.min.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>Xác Nhận Đơn Hàng</title>
+    <style>
+        body {
+            background-repeat: no-repeat;
+            background-image: url(https://i.pinimg.com/originals/9f/20/f0/9f20f045c6a90b7d2dd0c6a6f4efa28f.jpg);
+            background-size: cover;
+        }
+
+        .img_inner_background {
+            background-repeat: no-repeat;
+            background-image: url();
+            background-size: contain;
+            position: center;
+        }
+
+        .content {
+            position: center;
+            margin-top: 25%;
+            color: orange;
+            text-align: center
+        }
+
+        .content-title {
+            position: center;
+            margin-top: 12%;
+            color: orange;
+            text-align: center
+        }
+    </style>
+</head>
+<body>
+    <div class="img_inner_background">
+        <div class="content-title">
+            <h2>XÁC NHẬN ĐƠN HÀNG</h2>
+        </div>
+        <div class="content">
+            <h4>Cảm Ơn Bạn Đã Đặt Hàng, Chúng Tôi Sẽ Giao Hàng Nhanh Nhất Có Thể!</h4>
+            <h4 style="margin-top:7.5%">Chúc  Quý Khách Ngon Miệng Cùng Với Người Thân</h4>
+            <h4 style="margin-top:7.5%">Thời Gian Đặt Hàng Của Bạn: @DateTime.Now</h4>
+            <h4 style="margin-top:7.5%">TRÂN TRỌNG VÀ CẢM ƠN</h4>
+            <p style="margin-top:7.1%">
+                <a href="@Url.Action("Index","LayoutMain")" class="item_add"><p class="number item_price"><i> </i>Quay Về Trang Chủ</p></a>
+            </p>
+        </div>
+    </div>   
+
+</body>
+</html>

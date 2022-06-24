@@ -1,0 +1,21 @@
+﻿@using VSLT_FastfoodTeam.Models
+@{
+    ViewBag.Title = "KQTimKiem";
+    Layout = "~/Views/Food/SanPham_render_TimKiem.cshtml";
+}
+@foreach (var item in Model)
+{
+    <div class="col-md-4 bottom-cd simpleCart_shelfItem">
+        <div class="product-at ">
+            <a href="#">
+                <img class="img-responsive" src="@item.Hinhanh" alt="" style="width:350px; height:250px;margin-top:5%">
+                <div class="pro-grid">
+                    <span class="buy-in">@item.Tensp</span>
+                </div>
+            </a>
+        </div>
+        <p class="tun">@item.Tensp</p>
+        <a href="@Url.Action("Detail", "LayoutMain", new { @id = item.MaSP, @strURL = Request.Url.ToString() })" class="item_add"><p class="number item_price">Xem Chi Tiết</p></a>
+    </div>
+}
+
